@@ -3,6 +3,7 @@ brew 'gh'
 brew 'stow'
 brew 'neovim'
 brew 'tmux'
+brew 'macchina'
 
 cask 'steam'
 cask 'transmission'

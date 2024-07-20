@@ -1,0 +1,6 @@
+[user]
+        name = Hayden Curfman
+        email = hcurfman@keemail.me
+
+[core]
+        excludesFile = /Users/hayden/.gitignore
