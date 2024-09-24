@@ -3,4 +3,5 @@
         email = hcurfman@keemail.me
 
 [core]
+        editor = nvim
         excludesFile = /Users/hayden/.gitignore
