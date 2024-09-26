@@ -3,6 +3,7 @@ brew 'gh'
 brew 'stow'
 brew 'neovim'
 brew 'tmux'
+brew 'ranger'
 
 brew 'macchina' # neofetch replacement
 brew 'lsd'      #       ls replacement

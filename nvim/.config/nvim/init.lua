@@ -23,6 +23,11 @@ require('pckr').add{
         'bluz71/vim-moonfly-colors';
         'tiagovla/tokyodark.nvim';
         'EdenEast/nightfox.nvim';
+        'hcur/oxocarbon-black.nvim';
+
+        -- statusline
+        'nvim-lualine/lualine.nvim';
+        'nvim-tree/nvim-web-devicons';
 
         -- lsp
         'neovim/nvim-lspconfig';
@@ -98,4 +103,9 @@ cmp.setup({
 -- lsp config
 require'lspconfig'.jdtls.setup{
   capabilities = capabilities
+}
+
+-- lualine
+require('lualine').setup {
+  options = { theme = 'moonfly' }
 }
