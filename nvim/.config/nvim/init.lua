@@ -49,8 +49,8 @@ vim.cmd [[
   set noswapfile
   set ruler
   set incsearch
-  set modelines=0
-  set nomodeline
+  set modeline
+  set modelines=5
   set wildmenu
   set nojoinspaces
   set splitbelow
@@ -101,6 +101,12 @@ cmp.setup({
 })
 
 -- lsp config
+
+-- gopls
+require'lspconfig'.gopls.setup{
+  capabilities = capabilities
+}
+-- jdtls
 require'lspconfig'.jdtls.setup{
   capabilities = capabilities
 }
@@ -109,3 +115,5 @@ require'lspconfig'.jdtls.setup{
 require('lualine').setup {
   options = { theme = 'moonfly' }
 }
+
+-- vim:set shiftwidth=2:
