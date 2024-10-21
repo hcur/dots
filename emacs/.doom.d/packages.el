@@ -53,3 +53,5 @@
 (package! doom-moonfly-theme
   :recipe (:host github
            :repo "stackmystack/doom-moonfly-theme"))
+
+(package! exec-path-from-shell)

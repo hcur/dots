@@ -8,7 +8,7 @@
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/org/")
+(setq org-directory "~/Org/")
 
 
 (windmove-default-keybindings)
@@ -60,3 +60,23 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+
+(after! exec-path-from-shell
+  (exec-path-from-shell-initialize))
+
+(after! tex
+  (add-hook 'TeX-after-compilation-finished-functions
+            #'TeX-revert-document-buffer)
+
+  (setq +latex-viewers '(pdf-tools))
+
+  (setq TeX-view-program-selection
+        '( (output-pdf "PDF Tools")))
+
+  (add-hook 'LaTeX-mode-hook (lambda ()
+                               (push
+                                '("latexmk" "latexmk -pvc -pdf --synctex=1 %s" TeX-run-TeX nil t
+                                  :help "Run latexmk on file")
+                                TeX-command-list)))
+  ;(add-hook 'TeX-mode-hook '(lambda () (setq TeX-command-default "latexmk")))
+  )

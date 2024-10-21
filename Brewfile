@@ -19,5 +19,6 @@ cask 'transmission'
 cask 'iterm2'
 cask 'topnotch'
 cask 'raycast'
+#cask 'mactex'
 
 # vim: set syntax=ruby:
