@@ -55,3 +55,5 @@
            :repo "stackmystack/doom-moonfly-theme"))
 
 (package! exec-path-from-shell)
+
+(package! org-modern)

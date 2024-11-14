@@ -1,7 +1,13 @@
 [user]
-        name = Hayden Curfman
-        email = hcurfman@keemail.me
+    name = Hayden Curfman
+	email = hlc1@williams.edu
 
 [core]
-        editor = nvim
-        excludesFile = /Users/hayden/.gitignore
+    editor = nvim
+    excludesFile = /Users/hayden/.gitignore
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

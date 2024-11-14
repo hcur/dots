@@ -4,11 +4,9 @@
       user-mail-address "hcurfman@keemail.me")
 
 (setq doom-theme 'doom-moonfly)
-(setq display-line-numbers-type 'relative)
+(add-hook! '+doom-dashboard-functions (hide-mode-line-mode 1))
 
-;; If you use `org' and don't want your org files in the default location below,
-;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/Org/")
+(setq display-line-numbers-type 'relative)
 
 
 (windmove-default-keybindings)
@@ -28,6 +26,31 @@
 (global-set-key (kbd "C-x 2") 'split-and-follow-horizontally)
 (global-set-key (kbd "C-x 3") 'split-and-follow-vertically)
 
+
+;; org-mode configuration
+
+(setq org-directory "~/Org/")
+(setq org-agenda-current-time-string ""
+      org-agenda-time-grid '((daily) () "" "")
+      org-agenda-skip-timestamp-if-done t
+      org-agenda-skip-deadline-if-done t
+      org-agenda-skip-scheduled-if-done t
+      org-agenda-skip-scheduled-if-deadline-is-shown t
+      org-agenda-skip-timestamp-if-deadline-is-shown t)
+;; https://zzamboni.org/post/beautifying-org-mode-in-emacs/
+(font-lock-add-keywords 'org-mode
+                          '(("^ *\\([-]\\) "
+                             (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
+
+(add-hook 'org-mode-hook 'variable-pitch-mode)
+(custom-theme-set-faces
+ 'user
+ '(variable-pitch ((t (:family "iA Writer Quattro V" :height 140 ))))
+ '(fixed-pitch ((t ( :family "Hack Nerd Font Mono" :height 140 ))))
+ )
+(add-hook 'org-mode-hook 'visual-line-mode)
+
+;; =====================
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
@@ -61,8 +84,13 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
+;; Note: This is here because it made LaTeX compiliation work on macOS
 (after! exec-path-from-shell
   (exec-path-from-shell-initialize))
+
+(after! org-modern
+  (add-hook 'org-omde-hook #'org-modern-mode)
+  (add-hook 'org-agenda-finalize-hook #'org-modern-agenda))
 
 (after! tex
   (add-hook 'TeX-after-compilation-finished-functions

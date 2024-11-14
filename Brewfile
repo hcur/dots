@@ -9,7 +9,6 @@ brew 'tmux'
 brew 'macchina' # neofetch replacement
 brew 'lsd'      #       ls replacement
 
-
 brew 'go'
 brew 'jdtls'
 
@@ -19,6 +18,13 @@ cask 'transmission'
 cask 'iterm2'
 cask 'topnotch'
 cask 'raycast'
+cask 'github'
 #cask 'mactex'
+
+
+# fonts
+cask 'font-ia-writer-quattro'
+cask 'font-iosevka'
+cask 'font-hack-nerd-font'
 
 # vim: set syntax=ruby:

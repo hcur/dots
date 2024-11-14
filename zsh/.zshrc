@@ -6,8 +6,6 @@ COMPLETION_WAITING_DOTS="true"
 
 plugins=(git tmux)
 
-ZSH_TMUX_AUTOSTART=true
-
 
 source $ZSH/oh-my-zsh.sh
 
