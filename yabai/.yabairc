@@ -1,0 +1,31 @@
+#!/usr/bin/env sh
+
+
+# Config
+
+yabai -m config layout 			bsp
+yabai -m config mouse_follows_focus 	off
+yabai -m config focus_follows_mouse 	on
+
+
+# Rules
+
+
+yabai -m rule --add app="^About This Mac" manage=off
+yabai -m rule --add app="^Activity Monitor" manage=off
+yabai -m rule --add app="^App Store" manage=off
+yabai -m rule --add app="^Calendar" manage=off
+yabai -m rule --add app="^Calculator" manage=off
+yabai -m rule --add app="^Clock" manage=off
+yabai -m rule --add app="^Contacts" manage=off
+yabai -m rule --add app="^Finder" manage=off
+yabai -m rule --add app="^Maps" manage=off
+yabai -m rule --add app="^Messages" manage=off
+yabai -m rule --add app="^Music" manage=off
+yabai -m rule --add app="^System Settings" manage=off
+yabai -m rule --add app="^Weather" manage=off
+yabai -m rule --add title='Preferences$' manage=off
+yabai -m rule --add title='Settings$' manage=off
+yabai -m rule --add label="Safari" app="^Safari$" title="^(General|(Tab|Password|Website|Extension)s|AutoFill|Se(arch|curity)|Privacy|Advance)$" manage=off
+yabai -m rule --add app="^VLC$" manage=off
+

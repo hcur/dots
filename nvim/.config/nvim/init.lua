@@ -3,6 +3,7 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
+
 -- pckr bootstrap
 
 local function bootstrap_pckr()
@@ -23,6 +24,7 @@ end
 
 bootstrap_pckr()
 
+
 -- plugins
 
 require('pckr').add{
@@ -30,6 +32,13 @@ require('pckr').add{
   {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
 }
 
+
+-- theming
+
 vim.cmd("colorscheme oxocarbon")
+vim.api.nvim_set_hl(0, 'Normal', { bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'NormalNC', { bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'StatusLine', { bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'StatusLineNC', { bg = 'NONE' })
 
 -- vim: shiftwidth=2

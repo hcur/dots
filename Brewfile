@@ -3,6 +3,7 @@ brew 'stow'
 brew 'neovim'
 brew 'lsd'
 brew 'git'
+brew 'gh'
 brew 'macchina'
 
 # GUI applications
