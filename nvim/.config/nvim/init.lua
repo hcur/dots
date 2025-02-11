@@ -29,6 +29,7 @@ bootstrap_pckr()
 
 require('pckr').add{
   'nyoom-engineering/oxocarbon.nvim',
+  'catppuccin/nvim',
   {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
 }
 
@@ -36,10 +37,5 @@ require('pckr').add{
 -- theming
 
 vim.cmd("colorscheme oxocarbon")
--- transparency
-vim.api.nvim_set_hl(0, 'Normal', { bg = 'NONE' })
-vim.api.nvim_set_hl(0, 'NormalNC', { bg = 'NONE' })
-vim.api.nvim_set_hl(0, 'StatusLine', { bg = 'NONE' })
-vim.api.nvim_set_hl(0, 'StatusLineNC', { bg = 'NONE' })
 
 -- vim: shiftwidth=2
