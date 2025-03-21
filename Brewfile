@@ -8,8 +8,12 @@ brew 'macchina'
 
 # GUI applications
 brew 'pearcleaner'
+brew 'jordanbaird-ice'
 cask 'ghostty'
 cask 'github'
+cask 'steam'
+cask 'discord'
+
 
 # languages
 brew 'go'
