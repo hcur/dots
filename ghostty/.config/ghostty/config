@@ -1,7 +1,10 @@
 font-family = FiraCode Nerd Font
-theme = oxocarbon
+theme = UltraDark
 
 keybind = global:ctrl+grave_accent=toggle_quick_terminal
 quick-terminal-animation-duration = 0.1
 
 background-opacity = 1
+
+window-padding-x = 6
+window-padding-y = 6
