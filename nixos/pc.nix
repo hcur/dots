@@ -121,10 +121,12 @@
     spotify
     rofi-wayland
     pyfa
+    gnome-disk-utility
 
     # development
     go
     gopls
+    gcc
     typescript-language-server
 
     # fonts
