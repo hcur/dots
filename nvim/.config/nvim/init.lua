@@ -30,12 +30,13 @@ bootstrap_pckr()
 require('pckr').add{
   'nyoom-engineering/oxocarbon.nvim',
   'catppuccin/nvim',
+  'bluz71/vim-moonfly-colors',
   {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
 }
 
 
 -- theming
 
-vim.cmd("colorscheme oxocarbon")
+vim.cmd("colorscheme moonfly")
 
 -- vim: shiftwidth=2
