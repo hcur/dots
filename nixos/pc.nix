@@ -1,4 +1,8 @@
 { config, pkgs, ... }:
+let
+    unstableTarball = fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz";
+    unstable = import unstableTarball { config = config.nixpkgs.config; };
+in
 {
   imports =
     [
@@ -58,7 +62,7 @@
 
     emacs = {
       enable = true;
-      package = pkgs.emacs;
+      package = unstable.emacs;
     };
 
     # audio
@@ -85,7 +89,10 @@
   nixpkgs.config.allowUnfree = true;
 
   programs = {
-    firefox.enable = true;
+    firefox = {
+	enable = true;
+	package = unstable.firefox;
+    };
     steam = {
       enable = true;
       remotePlay.openFirewall = true;
@@ -107,7 +114,7 @@
   environment.systemPackages = with pkgs; [
     # tui
     ripgrep
-    neovim
+    unstable.neovim
     stow
     git
     gh
@@ -119,9 +126,15 @@
     ghostty
     furmark
     spotify
-    rofi-wayland
     pyfa
     gnome-disk-utility
+    via
+    albert
+    insomnia
+    protonup-qt
+
+    unstable.vscode
+    code-cursor
 
     # development
     go
@@ -146,6 +159,11 @@
     khelpcenter
     ark
   ];
+
+  environment.sessionVariables = {
+    STEAM_EXTRA_COMPAT_TOOLS_PATH =
+      "/home/hc/.local/share/Steam/compatibilitytools.d";
+  };
 
   system.stateVersion = "25.05";
 }
