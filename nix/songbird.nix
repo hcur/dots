@@ -1,14 +1,5 @@
 { config, pkgs, ... }:
-let
-    unstableTarball = fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz";
-    unstable = import unstableTarball { config = config.nixpkgs.config; };
-in
 {
-  imports =
-    [
-      ./hardware.nix
-    ];
-
   boot = {
     loader = {
       systemd-boot.enable = true;
@@ -18,7 +9,6 @@ in
   };
   
   networking = {
-    hostName = "nixos";
     networkmanager.enable = true;
   };
 
@@ -62,7 +52,6 @@ in
 
     emacs = {
       enable = true;
-      package = unstable.emacs;
     };
 
     # audio
@@ -90,8 +79,7 @@ in
 
   programs = {
     firefox = {
-	enable = true;
-	package = unstable.firefox;
+	    enable = true;
     };
     steam = {
       enable = true;
@@ -103,8 +91,8 @@ in
     zsh = {
       enable = true;
       ohMyZsh = {
-	enable = true;
-	plugins = [ "git" ];
+	      enable = true;
+	      plugins = [ "git" ];
       	theme = "half-life";
       };
     };
@@ -114,7 +102,7 @@ in
   environment.systemPackages = with pkgs; [
     # tui
     ripgrep
-    unstable.neovim
+    neovim
     stow
     git
     gh
@@ -129,11 +117,9 @@ in
     pyfa
     gnome-disk-utility
     via
-    albert
-    insomnia
     protonup-qt
 
-    unstable.vscode
+    vscode
     code-cursor
 
     # development
@@ -164,6 +150,4 @@ in
     STEAM_EXTRA_COMPAT_TOOLS_PATH =
       "/home/hc/.local/share/Steam/compatibilitytools.d";
   };
-
-  system.stateVersion = "25.05";
 }
