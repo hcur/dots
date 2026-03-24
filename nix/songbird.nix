@@ -1,11 +1,16 @@
 { config, pkgs, ... }:
+
+/* songbird.nix -- config for gaming desktop */
+
 {
+  system.stateVersion = "26.05";
+
   boot = {
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
-    kernelPackages = pkgs.linuxPackages_xanmod_stable;
+    kernelPackages = pkgs.linuxPackages_xanmod_latest;
   };
   
   networking = {
@@ -46,8 +51,11 @@
   services = {
     desktopManager.plasma6.enable = true;
 
-    displayManager.sddm = {
+    displayManager.ly = {
       enable = true;
+      settings = {
+        animation = "colormix";
+      };
     };
 
     emacs = {
@@ -79,7 +87,7 @@
 
   programs = {
     firefox = {
-	    enable = true;
+      enable = true;
     };
     steam = {
       enable = true;
@@ -91,9 +99,9 @@
     zsh = {
       enable = true;
       ohMyZsh = {
-	      enable = true;
-	      plugins = [ "git" ];
-      	theme = "half-life";
+        enable = true;
+        plugins = [ "git" ];
+        theme = "half-life";
       };
     };
   };
@@ -118,6 +126,7 @@
     gnome-disk-utility
     via
     protonup-qt
+    lutris
 
     vscode
     code-cursor

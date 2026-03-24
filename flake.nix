@@ -7,7 +7,10 @@
         };
     };
 
-    outputs = { self, nixpkgs }: {
+    outputs = {
+        self,
+        nixpkgs,
+    }: {
         nixosConfigurations = {
             songbird = nixpkgs.lib.nixosSystem {
                 system = "x86_64-linux";
