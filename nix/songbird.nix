@@ -1,9 +1,10 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 /* songbird.nix -- config for gaming desktop */
 
 {
   system.stateVersion = "26.05";
+  nixpkgs.config.allowUnfree = true;
 
   boot = {
     loader = {
@@ -79,12 +80,6 @@
 
   security.rtkit.enable = true;
 
-  virtualisation.docker = {
-    enable = true;
-  };
-
-  nixpkgs.config.allowUnfree = true;
-
   programs = {
     firefox = {
       enable = true;
@@ -115,27 +110,20 @@
     git
     gh
     lsd
-    pfetch-rs
 
     # gui
     discord
     ghostty
     furmark
     spotify
-    pyfa
     gnome-disk-utility
     via
     protonup-qt
-    lutris
-
-    vscode
-    code-cursor
+    inputs.nix-gaming.packages.${pkgs.stdenv.hostPlatform.system}.mo2installer
 
     # development
     go
-    gopls
     gcc
-    typescript-language-server
 
     # fonts
     nerd-fonts.fira-code
