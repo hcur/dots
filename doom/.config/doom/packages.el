@@ -51,3 +51,5 @@
 (package! doom-moonfly-theme
   :recipe (:host github
            :repo "stackmystack/doom-moonfly-theme"))
+
+(package! ellama)

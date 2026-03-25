@@ -5,6 +5,7 @@
 {
   system.stateVersion = "26.05";
   nixpkgs.config.allowUnfree = true;
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   boot = {
     loader = {
@@ -120,10 +121,12 @@
     via
     protonup-qt
     inputs.nix-gaming.packages.${pkgs.stdenv.hostPlatform.system}.mo2installer
+    limo
 
     # development
     go
     gcc
+    ollama-rocm
 
     # fonts
     nerd-fonts.fira-code

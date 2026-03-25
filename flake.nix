@@ -6,7 +6,7 @@
             url = "github:NixOS/nixpkgs/nixos-unstable";
         };
 
-        nix-gaming.url = "github:fufexan/nix-gaming";
+        nix-gaming.url = "github:hcur/nix-gaming";
     };
 
     outputs = {
