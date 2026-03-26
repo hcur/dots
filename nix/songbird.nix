@@ -111,16 +111,20 @@
     git
     gh
     lsd
+    unzip
+    comma
 
     # gui
     discord
     ghostty
     furmark
     spotify
+    nyxt
+    qutebrowser
+    linux-wallpaperengine
     gnome-disk-utility
     via
     protonup-qt
-    inputs.nix-gaming.packages.${pkgs.stdenv.hostPlatform.system}.mo2installer
     limo
 
     # development
