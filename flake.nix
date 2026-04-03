@@ -5,13 +5,18 @@
         nixpkgs = {
             url = "github:NixOS/nixpkgs/nixos-unstable";
         };
+
+        home-manager = {
+            url = "github:nix-community/home-manager";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
     };
 
-    outputs = {
-        self,
+    outputs = inputs@{
         nixpkgs,
+        home-manager,
         ...
-    }@inputs: {
+    }: {
         nixosConfigurations = {
             songbird = nixpkgs.lib.nixosSystem {
                 system = "x86_64-linux";
@@ -19,6 +24,15 @@
                 modules = [
                     ./nix/songbird.nix
                     ./nix/songbird_hw.nix
+                    home-manager.nixosModules.home-manager
+                    {
+                        home-manager.useGlobalPkgs = true;
+                        home-manager.useUserPackages = true;
+
+                        home-manager.users.hc = import ./home.nix;
+
+                        home-manager.extraSpecialArgs = {inherit inputs;};
+                    }
                 ];
             };
         };

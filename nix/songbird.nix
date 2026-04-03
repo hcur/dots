@@ -4,17 +4,25 @@
 
 {
   system.stateVersion = "26.05";
+
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 14d";
+  };
 
   boot = {
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
-    kernelPackages = pkgs.linuxPackages_xanmod_latest;
+
+    kernelPackages = pkgs.linuxPackages_zen;
+    kernelParams = [ "pcie_aspm=off" ];
   };
-  
+
   networking = {
     networkmanager.enable = true;
   };
@@ -22,7 +30,7 @@
   users.users.hc = {
     isNormalUser = true;
     description = "Hayden Curfman";
-    extraGroups = [ "video" "docker" "networkmanager" "wheel" ];
+    extraGroups = [ "video" "networkmanager" "wheel" ];
     shell = pkgs.zsh;
   };
 
@@ -30,17 +38,6 @@
 
   i18n = {
     defaultLocale = "en_US.UTF-8";
-    extraLocaleSettings = {
-      LC_ADDRESS = "en_US.UTF-8";
-      LC_IDENTIFICATION = "en_US.UTF-8";
-      LC_MEASUREMENT = "en_US.UTF-8";
-      LC_MONETARY = "en_US.UTF-8";
-      LC_NAME = "en_US.UTF-8";
-      LC_NUMERIC = "en_US.UTF-8";
-      LC_PAPER = "en_US.UTF-8";
-      LC_TELEPHONE = "en_US.UTF-8";
-      LC_TIME = "en_US.UTF-8";
-    };
   };
 
   hardware = {
@@ -48,6 +45,9 @@
       enable = true;
       powerOnBoot = true;
     };
+
+    enableRedistributableFirmware = true;
+    enableAllFirmware = true;
   };
 
   services = {
@@ -85,6 +85,7 @@
     firefox = {
       enable = true;
     };
+
     steam = {
       enable = true;
       remotePlay.openFirewall = true;
@@ -92,46 +93,12 @@
       gamescopeSession.enable = true;
       localNetworkGameTransfers.openFirewall = true;
     };
-    zsh = {
-      enable = true;
-      ohMyZsh = {
-        enable = true;
-        plugins = [ "git" ];
-        theme = "half-life";
-      };
-    };
+
+    zsh.enable = true;
   };
 
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    # tui
-    ripgrep
-    neovim
-    stow
-    git
-    gh
-    lsd
-    unzip
-    comma
-
-    # gui
-    discord
-    ghostty
-    furmark
-    spotify
-    nyxt
-    qutebrowser
-    linux-wallpaperengine
-    gnome-disk-utility
-    via
-    protonup-qt
-    limo
-
-    # development
-    go
-    gcc
-    ollama-rocm
-
     # fonts
     nerd-fonts.fira-code
 

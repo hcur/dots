@@ -1,0 +1,46 @@
+{ config, lib, pkgs, ... }:
+
+{
+  home.username = "hc";
+  home.homeDirectory = "/home/hc";
+  home.stateVersion = "26.05";
+
+  home.packages = with pkgs; [
+    ripgrep
+    stow
+    gh
+    lsd
+    unzip
+    comma
+
+    discord
+    ghostty
+    spotify
+    via
+    protonup-qt
+    limo
+
+    go
+    gcc
+    ollama-rocm
+  ];
+
+  programs.git = {
+    enable = true;
+    userName = "Hayden Curfman";
+    userEmail = "hlc1@williams.edu";
+  };
+
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
+    oh-my-zsh = {
+      enable = true;
+      plugins = [ "git" ];
+      theme = "half-life";
+    };
+    history.size = 10000;
+  };
+}
