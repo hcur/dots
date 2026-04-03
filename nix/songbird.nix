@@ -99,6 +99,9 @@
 
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    git
+    gh
+
     # fonts
     nerd-fonts.fira-code
 
