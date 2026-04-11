@@ -19,10 +19,16 @@
     via
     protonup-qt
     limo
+    vlc
 
     go
+    gopls
+    nodejs
     gcc
     ollama-rocm
+    nixfmt
+
+    nur.repos.lonerOrz.helium
   ];
 
   programs.git = {
