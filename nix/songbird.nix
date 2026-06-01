@@ -28,7 +28,7 @@
     # management, not sure if it's helping or needed
     kernelParams = [ "pcie_aspm=off" ];
 
-    supportFilesystems = [ "ntfs" ];
+    supportedFilesystems = [ "ntfs" ];
   };
 
   networking = {
