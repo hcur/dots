@@ -7,11 +7,14 @@
 
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  nixpkgs.overlays = [ inputs.nur.overlays.default ];
+  nixpkgs.overlays = [
+    inputs.nur.overlays.default
+    inputs.nix-cachyos-kernel.overlays.default
+  ];
   nix.gc = {
     automatic = true;
     dates = "weekly";
-    options = "--delete-older-than 14d";
+    options = "--delete-older-than 7d";
   };
 
   boot = {
@@ -20,8 +23,12 @@
       efi.canTouchEfiVariables = true;
     };
 
-    kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-x86_64-v3;
+    # trying to fix issues with rx 7800xt---claude suggested this for power
+    # management, not sure if it's helping or needed
     kernelParams = [ "pcie_aspm=off" ];
+
+    supportFilesystems = [ "ntfs" ];
   };
 
   networking = {
@@ -31,7 +38,7 @@
   users.users.hc = {
     isNormalUser = true;
     description = "Hayden Curfman";
-    extraGroups = [ "video" "networkmanager" "wheel" ];
+    extraGroups = [ "video" "networkmanager" "wheel" "input" ];
     shell = pkgs.zsh;
   };
 
@@ -61,10 +68,6 @@
       };
     };
 
-    emacs = {
-      enable = true;
-    };
-
     # audio
     pulseaudio.enable = false;
     pipewire = {
@@ -73,20 +76,22 @@
       alsa.support32Bit = true;
       pulse.enable = true;
     };
-  
+
     printing.enable = true;
-  
+
     # for iOS automatic mount
     usbmuxd.enable = true;
+
+    # for keychron k6 & via
+    udev.extraRules = ''
+      KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="3434", \
+        MODE="0660", GROUP="input", TAG+="uaccess", TAG+="udev-acl"
+    '';
   };
 
   security.rtkit.enable = true;
 
   programs = {
-    firefox = {
-      enable = true;
-    };
-
     steam = {
       enable = true;
       remotePlay.openFirewall = true;

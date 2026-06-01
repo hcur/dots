@@ -14,12 +14,15 @@
         nur = {
             url = "github:nix-community/NUR";
         };
+
+        nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
     };
 
     outputs = inputs@{
         nixpkgs,
         home-manager,
         nur,
+        nix-cachyos-kernel,
         ...
     }: {
         nixosConfigurations = {

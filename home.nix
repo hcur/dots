@@ -11,8 +11,8 @@
     gh
     lsd
     unzip
-    comma
-
+    microfetch
+    
     discord
     ghostty
     spotify
@@ -20,12 +20,12 @@
     protonup-qt
     limo
     vlc
+    zed-editor
 
     go
     gopls
     nodejs
     gcc
-    ollama-rocm
     nixfmt
 
     nur.repos.lonerOrz.helium
@@ -33,8 +33,10 @@
 
   programs.git = {
     enable = true;
-    userName = "Hayden Curfman";
-    userEmail = "hlc1@williams.edu";
+    settings = {
+      user.name = "Hayden Curfman";
+      user.email = "hlc1@williams.edu";
+    };
   };
 
   programs.zsh = {
