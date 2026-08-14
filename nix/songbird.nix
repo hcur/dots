@@ -24,6 +24,7 @@
     };
 
     kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-x86_64-v3;
+
     # trying to fix issues with rx 7800xt---claude suggested this for power
     # management, not sure if it's helping or needed
     kernelParams = [ "pcie_aspm=off" ];

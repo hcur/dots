@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ inputs, config, lib, pkgs, ... }:
 
 {
   home.username = "hc";
@@ -12,7 +12,8 @@
     lsd
     unzip
     microfetch
-    
+    vim
+
     discord
     ghostty
     spotify
@@ -20,7 +21,10 @@
     protonup-qt
     limo
     vlc
-    zed-editor
+    vscode
+    calibre
+    transmission_4
+    emacs
 
     go
     gopls
@@ -29,6 +33,8 @@
     nixfmt
 
     nur.repos.lonerOrz.helium
+
+    inputs.home-manager.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
   programs.git = {
