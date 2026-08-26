@@ -1,41 +1,54 @@
 { inputs, config, lib, pkgs, ... }:
 
 {
-  home.username = "hc";
-  home.homeDirectory = "/home/hc";
-  home.stateVersion = "26.05";
 
-  home.packages = with pkgs; [
-    ripgrep
-    stow
-    gh
-    lsd
-    unzip
-    microfetch
-    vim
+  home = {
+    username = "hc";
+    homeDirectory = "/home/hc";
+    stateVersion = "26.11";
 
-    discord
-    ghostty
-    spotify
-    via
-    protonup-qt
-    limo
-    vlc
-    vscode
-    calibre
-    transmission_4
-    emacs
+    packages = with pkgs; [
+      ripgrep
+      stow
+      gh
+      lsd
+      unzip
+      microfetch
+      vim
 
-    go
-    gopls
-    nodejs
-    gcc
-    nixfmt
+      discord
+      ghostty
+      spotify
+      via
+      protonup-qt
+      limo
+      vlc
+      vscode
+      calibre
+      transmission_4
+      emacs
 
-    nur.repos.lonerOrz.helium
+      go
+      gopls
+      nodejs
+      gcc
+      nixfmt
 
-    inputs.home-manager.packages.${pkgs.stdenv.hostPlatform.system}.default
-  ];
+      # custom packages
+      (callPackage ./nix/netlogo.nix {})
+
+      # nur packges
+      nur.repos.lonerOrz.helium
+
+      # install home-manager under home-manager
+      inputs.home-manager.packages.${pkgs.stdenv.hostPlatform.system}.default
+    ];
+
+    file = {
+      ".emacs.d/init.el".source = ./emacs/.emacs.d/init.el;
+    };
+
+  };
 
   programs.git = {
     enable = true;
@@ -47,14 +60,21 @@
 
   programs.zsh = {
     enable = true;
+    
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
+    
     oh-my-zsh = {
       enable = true;
       plugins = [ "git" ];
       theme = "half-life";
     };
+
+    shellAliases = {
+      dots = "cd ~/.dotfiles";
+    };
+    
     history.size = 10000;
   };
 }

@@ -1,0 +1,98 @@
+
+#+TITLE: emacs config
+#+AUTHOR: Hayden Curfman
+#+PROPERTY: header-args :tangle ~/.emacs.d/init.el
+
+My Emacs configuration for both macOS and NixOS. Managed with home-manager
+on Nix, and with GNU Stow on mac.
+
+* init
+
+#+begin_src emacs-lisp
+  ;; -*- lexical-binding: t -*-
+#+end_src
+
+** personal information
+
+#+begin_src emacs-lisp
+  (setq user-full-name "Hayden Curfman"
+        user-mail-address "hlc1@williams.edu")
+#+end_src
+
+** startup settings
+
+#+begin_src emacs-lisp
+  (eval-and-compile
+    (setq gc-cons-threshold 402653184
+  	gc-cons-percentage 0.6))
+#+end_src
+
+Native compilation warnings are annoying:
+
+#+begin_src emacs-lisp
+  (setq native-comp-async-report-warnings-errors nil)
+#+end_src
+
+
+* general
+
+** window settings
+
+#+begin_src emacs-lisp
+  (fringe-mode 0)
+
+  (set-face-attribute 'default nil :font "FiraCode Nerd Font-12")
+#+end_src
+
+Disable tool/menu/scroll bar(s):
+
+#+begin_src emacs-lisp
+  (menu-bar-mode -1)
+  (tool-bar-mode -1)
+  (scroll-bar-mode -1)
+  (horizontal-scroll-bar-mode -1)
+#+end_src
+
+Enable pretty scrolling:
+
+#+begin_src emacs-lisp
+  (pixel-scroll-mode 1)
+#+end_src
+
+** preferences
+
+#+begin_src emacs-lisp
+  (setq auto-save-default nil
+        ring-bell-function 'ignore ; no bell ring
+        create-lockfiles nil       ; lockfiles are annoying
+        )
+#+end_src
+
+Let emacs finish my parens for me:
+
+#+begin_src emacs-lisp
+  (electric-pair-mode 1)
+#+end_src
+
+** autosave
+
+Autosave files aggravate and distract me more than I've found useful. I have it disabled,
+for I am a moral free agent. (Maybe I'll regret and revisit this decision at a later date.)
+
+#+begin_src emacs-lisp
+  (auto-save-mode -1)
+#+end_src
+
+** macos stuff
+
+#+begin_src emacs-lisp
+  (setq mac-command-modifier 'meta)
+  (setq mac-option-modifier 'super)
+#+end_src
+
+
+* wrapping up
+
+#+begin_src emacs-lisp
+  (setq gc-cons-threshold (* 2 1000 1000))
+#+end_src

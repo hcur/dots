@@ -3,7 +3,7 @@
 an attempt at herding my dotfiles for various machines into a single repository. contains a nix flake for my nixos machines, dots for the various programs i use, and a brewfile that i update to reflect the state of my (nixless) macbook.
 
  | os       | nixos // macos |
- | wm       | plasma         |
+ | wm       | plasma // aqua |
  | editor   | emacs          |
  | shell    | zsh            |
  | terminal | ghostty        |

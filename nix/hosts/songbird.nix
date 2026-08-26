@@ -4,6 +4,7 @@
 
 {
   system.stateVersion = "26.05";
+  imports = [ ../hw/songbird.nix ];
 
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
