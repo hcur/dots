@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 (setq user-full-name "Hayden Curfman"
       user-mail-address "hlc1@williams.edu")
 
@@ -29,5 +31,24 @@
 
 (setq mac-command-modifier 'meta)
 (setq mac-option-modifier 'super)
+
+(require 'package)
+(add-to-list 'package-archives
+	     '("melpa" . "https://melpa.org/packages/") t)
+
+(use-package nordic-night-theme
+  :ensure t
+  )
+
+(use-package nyx-theme
+  :ensure t
+  )
+
+(use-package sculpture-themes
+  :ensure t
+  )
+
+(setq org-startup-indented t
+      org-hide-leading-stars t)
 
 (setq gc-cons-threshold (* 2 1000 1000))
