@@ -1,4 +1,3 @@
-
 #+TITLE: emacs config
 #+AUTHOR: Hayden Curfman
 #+PROPERTY: header-args :tangle ~/.emacs.d/init.el
@@ -88,6 +87,58 @@ for I am a moral free agent. (Maybe I'll regret and revisit this decision at a l
 #+begin_src emacs-lisp
   (setq mac-command-modifier 'meta)
   (setq mac-option-modifier 'super)
+#+end_src
+
+
+* packages
+
+** setup
+
+#+begin_src emacs-lisp
+  (require 'package)
+  (add-to-list 'package-archives
+  	     '("melpa" . "https://melpa.org/packages/") t)
+#+end_src
+
+** themes
+
+*** nordic-night & nordic-midnight
+
+#+begin_src emacs-lisp
+  (use-package nordic-night-theme
+    :ensure t
+    )
+#+end_src
+
+*** nyx
+
+#+begin_src emacs-lisp
+  (use-package nyx-theme
+    :ensure t
+    )
+#+end_src
+
+*** sculpture
+
+#+begin_src emacs-lisp
+  (use-package sculpture-themes
+    :ensure t
+    )
+#+end_src
+
+*** set a theme
+
+# TODO
+
+
+* org
+
+org-indent-mode makes everything indented when a .org file is opened,
+which looks quite nice:
+
+#+begin_src emacs-lisp
+  (setq org-startup-indented t
+        org-hide-leading-stars t)
 #+end_src
 
 
