@@ -1,6 +1,6 @@
 #+TITLE: emacs config
 #+AUTHOR: Hayden Curfman
-#+PROPERTY: header-args :tangle ~/.emacs.d/init.el
+#+PROPERTY: header-args :tangle .emacs.d/init.el
 
 My Emacs configuration for both macOS and NixOS. Managed with home-manager
 on Nix, and with GNU Stow on mac.
