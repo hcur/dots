@@ -1,4 +1,4 @@
-l#+TITLE: emacs config
+#+TITLE: emacs config
 #+AUTHOR: Hayden Curfman
 #+PROPERTY: header-args :tangle .emacs.d/init.el
 
