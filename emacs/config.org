@@ -1,4 +1,4 @@
-#+TITLE: emacs config
+l#+TITLE: emacs config
 #+AUTHOR: Hayden Curfman
 #+PROPERTY: header-args :tangle .emacs.d/init.el
 
@@ -127,6 +127,24 @@ for I am a moral free agent. (Maybe I'll regret and revisit this decision at a l
 #+end_src
 
 *** set a theme
+
+This was a problem that was irking me, where some themes in org-mode
+would have weird highlighting going on in the space behind the
+indent marker for a bullet point. The function below (made with Claude)
+fixes that after each theme change:
+
+#+begin_src emacs-lisp
+  (defun fix-org-indent-face (&rest _)
+    "Make org-indent and org-hide faces always match the current theme's background."
+    (interactive)
+    (let ((bg (face-attribute 'default :background)))
+      (set-face-attribute 'org-indent nil :background bg :foreground bg)
+      (set-face-attribute 'org-hide nil :background bg :foreground bg)))
+
+  (add-hook 'enable-theme-functions #'fix-org-indent-face)
+#+end_src
+
+We should also set a nice default color scheme:
 
 # TODO
 

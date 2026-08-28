@@ -41,11 +41,11 @@
       nur.repos.lonerOrz.helium
 
       # install home-manager under home-manager
-      inputs.home-manager.packages.${pkgs.stdenv.hostPlatform.system}.default
+      #inputs.home-manager.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
 
     file = {
-      ".emacs.d/init.el".source = ./emacs/.emacs.d/init.el;
+      ".emacs.d/init.el".source = config.lib.file.mkOutOfStoreSymlink "/home/hc/.dotfiles/emacs/.emacs.d/init.el";
     };
 
   };

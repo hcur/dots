@@ -48,6 +48,14 @@
   :ensure t
   )
 
+(defun fix-org-indent-face (&rest _)
+  (interactive)
+  (let ((bg (face-attribute 'default :background)))
+    (set-face-attribute 'org-indent nil :background bg :foreground bg)
+    (set-face-attribute 'org-hide nil :background bg :foreground bg)))
+
+(add-hook 'enable-theme-functions #'fix-org-indent-face)
+
 (setq org-startup-indented t
       org-hide-leading-stars t)
 

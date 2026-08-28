@@ -14,24 +14,43 @@
     nur.url = "github:nix-community/NUR";
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-cachyos-kernel, nur, ... }@inputs: {
-    nixosConfigurations.songbird = nixpkgs.lib.nixosSystem {
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    nix-cachyos-kernel,
+    nur,
+    ...
+  }@inputs:
+    let
       system = "x86_64-linux";
-      specialArgs = { inherit inputs; };
-      modules = [
-        ./nix/hosts/songbird.nix
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+        overlays = [
+          nur.overlays.default
+          nix-cachyos-kernel.overlays.default  
+        ];
+      };
+    in {
 
-        home-manager.nixosModules.home-manager
-        {
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            users.hc = import ./home.nix;
-            backupFileExtension = "backup";
-            extraSpecialArgs = { inherit inputs; };
-          };
-        }
-      ];
+      homeConfigurations."hc" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        extraSpecialArgs = { inherit inputs; };
+
+        modules = [ ./home.nix ];
+      };
+
+      nixosConfigurations."songbird" = nixpkgs.lib.nixosSystem {
+        inherit system;
+        specialArgs = { inherit inputs; };
+
+        modules = [
+          { nixpkgs.pkgs = pkgs; }
+          ./nix/hw/songbird.nix
+          ./nix/hosts/songbird.nix
+        ];
+      };
+
     };
-  };
 }

@@ -4,18 +4,17 @@
 
 {
   system.stateVersion = "26.05";
-  imports = [ ../hw/songbird.nix ];
 
-  nixpkgs.config.allowUnfree = true;
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  nixpkgs.overlays = [
-    inputs.nur.overlays.default
-    inputs.nix-cachyos-kernel.overlays.default
-  ];
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 7d";
+  nix = {
+    settings.experimental-features = [
+      "flakes" "nix-command"
+    ];
+
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 7d";
+    };
   };
 
   boot = {
