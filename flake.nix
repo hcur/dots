@@ -42,7 +42,7 @@
       };
 
       nixosConfigurations = {
-	"songbird" = nixpkgs.lib.nixosSystem {
+	      "songbird" = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = { inherit inputs; };
 
@@ -51,18 +51,18 @@
             ./nix/hw/songbird.nix
             ./nix/hosts/songbird.nix
           ];
-	};
+	      };
 
-	"nest" = nixpkgs.lib.nixosSystem {
-	  inherit system;
-	  specialArgs = { inherit inputs; };
+        "nest" = nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = { inherit inputs; };
 
-	  modules = [
-	    { nixpkgs.pkgs = pkgs; }
-	    ./nix/hw/nest.nix
-	    ./nix/hosts/nest.nix
-	  ];
-	};
+          modules = [
+            { nixpkgs.pkgs = pkgs; }
+            ./nix/hw/nest.nix
+            ./nix/hosts/nest.nix
+          ];
+        };
       };
     };
 }
