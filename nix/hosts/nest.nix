@@ -1,8 +1,8 @@
 { config, pkgs, ... }:
 
 {
-  boot = {
-    loader.systemd-boot.enable = true;
+  boot.loader = {
+    systemd-boot.enable = true;
     efi.canTouchEfiVariables = true;
   };
 
@@ -13,7 +13,7 @@
   time.timeZone = "America/New_York";
 
   i18n = {
-    default = "en_US.UTF-8";
+    defaultLocale = "en_US.UTF-8";
     extraLocaleSettings = {
       LC_ADDRESS = "en_US.UTF-8";
       LC_IDENTIFICATION = "en_US.UTF-8";
@@ -47,12 +47,16 @@
 
   virtualisation.docker = {
     enable = true;
-  }
+  };
 
   environment.systemPackages = with pkgs; [
+    # essentials
     vim
     vscode
     git
+    gh
+
+    # homelabbity
     compose2nix
   ];
   
