@@ -32,6 +32,7 @@
           nix-cachyos-kernel.overlays.default  
         ];
       };
+      secrets = builtins.fromJSON (builtins.readFile "${self}/secrets/secrets.json");
     in {
 
       homeConfigurations."hc" = home-manager.lib.homeManagerConfiguration {
@@ -55,12 +56,18 @@
 
         "nest" = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit inputs; };
+          specialArgs = {
+            inherit inputs;
+            inherit secrets;
+          };
 
           modules = [
             { nixpkgs.pkgs = pkgs; }
             ./nix/hw/nest.nix
             ./nix/hosts/nest.nix
+
+            ./nix/modules/beszel.nix
+            ./nix/modules/sure/docker-compose.nix
           ];
         };
       };

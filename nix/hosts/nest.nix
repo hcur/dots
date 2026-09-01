@@ -1,6 +1,8 @@
 { config, pkgs, ... }:
 
 {
+  system.stateVersion = "26.11";
+
   boot.loader = {
     systemd-boot.enable = true;
     efi.canTouchEfiVariables = true;
@@ -45,10 +47,6 @@
 
   programs.firefox.enable = true;
 
-  virtualisation.docker = {
-    enable = true;
-  };
-
   environment.systemPackages = with pkgs; [
     # essentials
     vim
@@ -57,8 +55,29 @@
     gh
 
     # homelabbity
+    git-crypt
+    openssl
     compose2nix
   ];
-  
-  system.stateVersion = "25.11";
+
+  # homelab ===
+
+  networking.firewall.allowedTCPPorts = [ 8090 ];
+
+  virtualisation.containers.registries.settings = {
+    unqualified-search-registries = [ "docker.io" ];
+  };
+
+  services.beszel.hub = {
+    enable = true;
+    host = "0.0.0.0";
+    port = 8090;
+  };
+
+  services.openssh = {
+    enable = true;
+    settings = {
+      PermitRootLogin = "no";
+    };
+  };
 }
