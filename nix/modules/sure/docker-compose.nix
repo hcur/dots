@@ -112,6 +112,10 @@
       "RAILS_FORCE_SSL" = "false";
       "REDIS_URL" = "redis://redis:6379/1";
       "SECRET_KEY_BASE" = secrets.sure.secretkey;
+      "ACTIVE_RECORD_ENCRYPTION_PRIMARY_KEY" = secrets.sure.active-record-encryption-primary-key;
+      "ACTIVE_RECORD_ENCRYPTION_DETERMINISTIC_KEY" = secrets.sure.active-record-encryption-deterministic-key;
+      "ACTIVE_RECORD_ENCRYPTION_KEY_DERIVATION_SALT" = secrets.sure.active-record-encryption-key-derivation-salt;
+      "SELF_HOSTED" = "true";
     };
     volumes = [
       "sure_app-storage:/rails/storage:rw"
@@ -169,6 +173,9 @@
       "RAILS_FORCE_SSL" = "false";
       "REDIS_URL" = "redis://redis:6379/1";
       "SECRET_KEY_BASE" = secrets.sure.secretkey;
+      "ACTIVE_RECORD_ENCRYPTION_PRIMARY_KEY" = secrets.sure.active-record-encryption-primary-key;
+      "ACTIVE_RECORD_ENCRYPTION_DETERMINISTIC_KEY" = secrets.sure.active-record-encryption-deterministic-key;
+      "ACTIVE_RECORD_ENCRYPTION_KEY_DERIVATION_SALT" = secrets.sure.active-record-encryption-key-derivation-salt;
       "SELF_HOSTED" = "true";
     };
     volumes = [

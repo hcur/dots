@@ -34,6 +34,8 @@
       };
       secrets = builtins.fromJSON (builtins.readFile "${self}/secrets/secrets.json");
     in {
+      packages.${system}.home-manager =
+        home-manager.packages.${system}.home-manager;
 
       homeConfigurations."hc" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
@@ -68,6 +70,7 @@
 
             ./nix/modules/beszel.nix
             ./nix/modules/sure/docker-compose.nix
+            ./nix/modules/passthru.nix
           ];
         };
       };

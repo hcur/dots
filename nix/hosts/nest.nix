@@ -8,6 +8,12 @@
     efi.canTouchEfiVariables = true;
   };
 
+  nix = {
+    settings.experimental-features = [
+      "flakes" "nix-command"
+    ];
+  };
+
   networking.hostName = "nest";
   networking.networkmanager.enable = true;
   programs.nm-applet.enable = true;
